@@ -11,6 +11,8 @@
             <Button Content="Check for Update"
                     Click="Button_Click" 
                     Margin="0 0 0 20"/>
+            <Button Content="Update" 
+                    IsEnabled="False"/>
             <TextBlock Text="Welcome to WPF APP Updates" />
         </StackPanel>
     </Grid>
