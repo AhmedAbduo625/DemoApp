@@ -8,11 +8,14 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <StackPanel Margin="20">
+            <TextBlock x:Name="Versiontext" Text="Version" />
             <Button Content="Check for Update"
                     Click="Button_Click" 
                     Margin="0 0 0 20"/>
             <Button Content="Update" 
-                    IsEnabled="False"/>
+                    IsEnabled="False"
+                    x:Name="UpdateBtn"
+                    Click="UpdateBtn_Click"/>
             <TextBlock Text="Welcome to WPF APP Updates" />
         </StackPanel>
     </Grid>

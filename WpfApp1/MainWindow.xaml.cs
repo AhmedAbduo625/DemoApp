@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Squirrel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,14 +21,35 @@ namespace WpfApp1
     /// </summary>
     public partial class MainWindow : Window
     {
+        UpdateManager manage;
+
         public MainWindow()
         {
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
 
+        private async void Button_Click(object sender, RoutedEventArgs e)
+        {
+            manage = await UpdateManager.GitHubUpdateManager("https://github.com/AhmedAbduo625/DemoApp.git");
+            Versiontext.Text = manage.CurrentlyInstalledVersion().ToString();
+            var updateInfo = await manage.CheckForUpdate();
+            if(updateInfo.ReleasesToApply.Count > 0)
+            {
+                MessageBox.Show("New Release is available");
+                UpdateBtn.IsEnabled = true;
+            }
+            else
+            {
+                MessageBox.Show("No Release available");
+            }
+
+        }
+
+        private async void UpdateBtn_Click(object sender, RoutedEventArgs e)
+        {
+            await manage.UpdateApp();
+            MessageBox.Show("Updated Successfully");
         }
     }
 }
